@@ -5,3 +5,14 @@
 .proficiency {
     text-indent: 10px;
 }
+
+aside {
+    text-indent: 10px;
+    float: right;
+    min-width: 90%;
+    min-height: 96vh;
+}
+
+.border {
+    background-color: #282c34
+}

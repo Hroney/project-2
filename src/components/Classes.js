@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import CharacterClass from "./Class"
 import { Outlet, useOutletContext } from "react-router-dom";
+import "../styles/Classes.css"
 
 function Classes() {
     const classList = useOutletContext();
@@ -13,7 +14,7 @@ function Classes() {
 
 
     return (
-        <main>
+        <main className="main-style">
             <Outlet context={classList} />
             {renderClasses}
         </main>

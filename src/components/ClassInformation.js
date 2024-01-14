@@ -13,7 +13,7 @@ function ClassInformation() {
     }, [nameOfClass])
 
     return (
-        <aside>
+        <aside className="border">
             <h3>Hit dice: {classInformation.hit_die}</h3>
             <ul className="class-list">
                 Proficiencies:

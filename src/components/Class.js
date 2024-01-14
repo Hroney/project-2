@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
-import ClassInformation from "./ClassInformation";
 import { Link } from "react-router-dom";
+import "../styles/ClassArticle.css"
 
 function CharacterClass({ characterClass }) {
     const [classInformation, setClassInformation] = useState([])
@@ -19,9 +19,11 @@ function CharacterClass({ characterClass }) {
 
 
     return (
-        <article>
-            <h1 onClick={handleExtraDetail}>{characterClass.name}</h1>
-            <p><Link to={`/classes/${characterClass.index}`}>Info</Link></p>
+        <article className="class-article">
+            {/* <h1 onClick={handleExtraDetail}>{characterClass.name}</h1> */}
+            <h1 onClick={handleExtraDetail}>
+                <Link className={"link-text"} to={`/classes/${characterClass.index}`}>{characterClass.name}</Link>
+            </h1>
             {/* {classClicked ? <ClassInformation classInformation={classInformation} /> : null} */}
         </article>
     );

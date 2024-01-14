@@ -1,0 +1,13 @@
+.class-article {
+    text-align: center;
+    min-width: 10%;
+    max-width: 10%;
+    text-decoration: none;
+    font-size: 10px;
+    color: white;
+    background-color: #202329;
+}
+
+.link-text {
+    color: white;
+}

@@ -19,6 +19,7 @@ function App() {
     <div className="App">
       <header><NavBar /></header>
       <Outlet context={classList} />
+      <footer></footer>
     </div>
   );
 }

@@ -1,14 +1,18 @@
 .nav-link {
+    text-align: center;
     display: inline-block;
     box-sizing: border-box;
     width: 60px;
-    padding: 5px;
-    margin: 0 6px 6px;
     text-decoration: none;
     font-size: min(10vw, 15px);
     color: white;
 }
 
+.navBar {
+    background-color: #202329;
+}
+
 .active {
-    color: red;
+    color: rgb(255, 255, 255);
+    background-color: #282c34;
 }
