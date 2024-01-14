@@ -1,9 +1,17 @@
 .class-list {
-    list-style-type: none
+    text-indent: 10px;
+    list-style-type: none;
+    margin-left: -40px;
+
 }
 
 .proficiency {
-    text-indent: 10px;
+    margin: 5px;
+    text-indent: 20px;
+    border: 1px solid rgba(255, 255, 255, 0.05);
+    border-top: 0px;
+    border-left: 0px;
+    border-right: 0px;
 }
 
 aside {
