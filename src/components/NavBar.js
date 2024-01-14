@@ -11,6 +11,12 @@ function NavBar() {
             >
                 Home
             </NavLink>
+            <NavLink
+                to="/classes"
+                className="nav-link"
+            >
+                Classes
+            </NavLink>
 
         </nav>
     );
