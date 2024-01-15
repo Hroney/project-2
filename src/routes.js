@@ -4,6 +4,7 @@ import Classes from './components/Classes';
 import Home from "./components/Home"
 import Spells from './components/Spells';
 import SpellInformation from './components/SpellInformation';
+import Spell from './components/Spell';
 
 const routes = [
     {
@@ -30,7 +31,13 @@ const routes = [
                 children: [
                     {
                         path: "/spells/:id",
-                        element: <SpellInformation />
+                        element: <SpellInformation />,
+                        children: [
+                            {
+                                path: "/spells/:id/:id",
+                                element: <Spell />,
+                            }
+                        ]
                     }
                 ]
             }

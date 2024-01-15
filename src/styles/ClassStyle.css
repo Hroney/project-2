@@ -12,7 +12,7 @@
     border-top: 0px;
     border-left: 0px;
     border-right: 0px;
-    color: rgb(218, 197, 171)
+    color: rgb(218, 197, 171);
 }
 
 .additional-proficiency {
@@ -24,9 +24,33 @@ aside {
     text-indent: 10px;
     float: right;
     min-width: 90%;
+    max-width: 100vh - 50px;
     min-height: 96vh;
+    position: absolute;
+    max-height: 90vh;
+    overflow-y: scroll;
+}
+
+aside::-webkit-scrollbar {
+    width: 1em;
+}
+
+aside::-webkit-scrollbar-track {
+    -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
+}
+
+aside::-webkit-scrollbar-thumb {
+    background-color: darkgrey;
+    outline: 1px solid slategrey;
 }
 
 .border {
-    background-color: #282c34
+    background-color: #282c34;
+}
+
+.spell-style {
+    cursor: pointer;
+    margin-top: 5px;
+    margin-bottom: 5px;
+    width: fit-content;
 }

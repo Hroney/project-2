@@ -6,8 +6,6 @@ import { useEffect, useState } from 'react';
 function App() {
   const [classList, setClassList] = useState([])
 
-  const navigate = useNavigate();
-
   useEffect(() => {
     fetch("https://www.dnd5eapi.co/api/classes")
       .then((r) => r.json())

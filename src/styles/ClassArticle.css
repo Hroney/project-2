@@ -1,6 +1,6 @@
 .class-article {
-    text-align: center;
-    min-width: 10%;
+    text-align: left;
+    min-width: 50px;
     max-width: 10%;
     text-decoration: none;
     font-size: 10px;
