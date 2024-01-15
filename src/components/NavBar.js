@@ -17,7 +17,12 @@ function NavBar() {
             >
                 Classes
             </NavLink>
-
+            <NavLink
+                to="/spells"
+                className="nav-link"
+            >
+                Spells
+            </NavLink>
         </nav>
     );
 };

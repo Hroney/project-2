@@ -12,6 +12,12 @@
     border-top: 0px;
     border-left: 0px;
     border-right: 0px;
+    color: rgb(218, 197, 171)
+}
+
+.additional-proficiency {
+    margin: 5px;
+    color: rgb(187, 187, 187);
 }
 
 aside {

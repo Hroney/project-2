@@ -9,7 +9,7 @@ function Classes() {
 
 
     const renderClasses = (
-        classList.map((characterClass) => { return <CharacterClass key={characterClass.name} characterClass={characterClass} /> })
+        classList.map((characterClass) => { return <CharacterClass key={characterClass.name} characterClass={characterClass} linkInfo="/classes/" /> })
     )
 
 
