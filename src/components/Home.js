@@ -1,7 +1,8 @@
 function Home() {
     return (
         <main>
-            <h1>Home!</h1>
+            <h1>This is the start of a D&D 5e webpage.</h1>
+            <p>Explore the information available to you!</p>
         </main>
     );
 }
