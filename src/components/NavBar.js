@@ -23,6 +23,12 @@ function NavBar() {
             >
                 Spells
             </NavLink>
+            <NavLink
+                to="/pick-a-class"
+                className="nav-link"
+            >
+                Choose class
+            </NavLink>
         </nav>
     );
 };

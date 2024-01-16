@@ -13,8 +13,6 @@ function Spell() {
             .then((r) => r.json())
             .then(setSpellInfo)
     }, [])
-    console.log(spellInfo)
-
 
     return (
         <>
@@ -25,11 +23,11 @@ function Spell() {
                     <p className="spell-desc">Range - {spellInfo.range}</p>
                     <p className="spell-desc">{spellInfo.concentration ? "Requires concentration" : "Does not require concentration."}</p>
 
-                    {spellInfo.desc.map((desc) => <p className="spell-desc">{desc}</p>)}
+                    {spellInfo.desc.map((desc) => <p className="spell-desc" key={desc.index}>{desc}</p>)}
                     <>
                         <p className="spell-desc">Classes</p>
                         {spellInfo.classes.map((castingClass) =>
-                            <p className="spell-desc-pointer" key={castingClass.index} onClick={() => navigate(`../../classes/${castingClass.index}`)}> {castingClass.name}
+                            <p className="spell-desc-pointer" key={castingClass.index} onClick={() => navigate(`../../${castingClass.index}`)}> {castingClass.name}
                             </p>)}
                     </>
                     <></>
