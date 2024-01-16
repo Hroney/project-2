@@ -1,10 +1,11 @@
-import { useParams } from "react-router-dom"
+import { useNavigate, useParams } from "react-router-dom"
 import { useState, useEffect } from "react";
 import "../styles/ClassStyle.css"
 
 function ClassInformation() {
     const [classInformation, setClassInformation] = useState([])
     const nameOfClass = useParams();
+    const navigate = useNavigate();
 
     useEffect(() => {
         fetch(`https://www.dnd5eapi.co/api/classes/${nameOfClass.id}`)
@@ -17,6 +18,9 @@ function ClassInformation() {
     return (
         <aside className="border">
             <h1>{classInformation.name}</h1>
+            <h3 className="pointer" onClick={() => navigate(`/spells/${nameOfClass.id}`)}>
+                Click here for {nameOfClass.id} Spells
+            </h3>
             <div>
                 Hit dice:
                 <p className="proficiency" key={classInformation.index}>{classInformation.hit_die}</p>

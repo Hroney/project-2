@@ -27,7 +27,13 @@ function NavBar() {
                 to="/pick-a-class"
                 className="nav-link"
             >
-                Choose class
+                Create a Character
+            </NavLink>
+            <NavLink
+                to="/party"
+                className="nav-link"
+            >
+                Party List
             </NavLink>
         </nav>
     );

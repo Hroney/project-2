@@ -8,6 +8,7 @@
 .proficiency {
     margin: 5px;
     text-indent: 20px;
+    text-align: center;
     border: 1px solid rgba(255, 255, 255, 0.05);
     border-top: 0px;
     border-left: 0px;
@@ -24,11 +25,13 @@ aside {
     text-indent: 10px;
     float: right;
     min-width: 90%;
-    max-width: 100vh - 50px;
+    max-width: fit-content;
     min-height: 96vh;
     position: absolute;
     max-height: 90vh;
     overflow-y: scroll;
+    text-align: center;
+
 }
 
 aside::-webkit-scrollbar {
@@ -53,4 +56,19 @@ aside::-webkit-scrollbar-thumb {
     margin-top: 5px;
     margin-bottom: 5px;
     width: fit-content;
+}
+
+.pointer {
+    cursor: pointer;
+    font-size: large;
+    margin-bottom: 25px;
+    color: rgb(196, 177, 154);
+    text-align: center;
+
+}
+
+h1 {
+    font-size: large;
+    text-align: center;
+
 }

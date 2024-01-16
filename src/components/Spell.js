@@ -27,7 +27,7 @@ function Spell() {
                     <>
                         <p className="spell-desc">Classes</p>
                         {spellInfo.classes.map((castingClass) =>
-                            <p className="spell-desc-pointer" key={castingClass.index} onClick={() => navigate(`../../${castingClass.index}`)}> {castingClass.name}
+                            <p className="spell-desc-pointer" key={castingClass.index} onClick={() => navigate(`/classes/${castingClass.index}`)}> {castingClass.name}
                             </p>)}
                     </>
                     <></>

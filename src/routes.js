@@ -6,6 +6,7 @@ import Spells from './components/Spells';
 import SpellInformation from './components/SpellInformation';
 import Spell from './components/Spell';
 import Classform from './components/Classform';
+import Party from './components/Party';
 
 const routes = [
     {
@@ -45,6 +46,10 @@ const routes = [
             {
                 path: '/pick-a-class',
                 element: <Classform />
+            },
+            {
+                path: '/party',
+                element: <Party />
             }
         ]
     }
