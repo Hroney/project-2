@@ -3,7 +3,6 @@ import { useOutletContext } from "react-router-dom";
 
 function Classform() {
     const [classInformation, setClassInformation] = useState(undefined)
-    const classList = useOutletContext();
     const [formData, setFormData] = useState({
         characterClass: "barbarian",
         proficiencyOne: "",
@@ -16,7 +15,15 @@ function Classform() {
         equipmentOptionFour: "",
         equipmentOptionFive: "",
     });
-    console.log("classInformation", classInformation)
+
+    const classList = useOutletContext();
+    const equipmentList = [
+        "equipmentOptionOne",
+        "equipmentOptionTwo",
+        "equipmentOptionThree",
+        "equipmentOptionFour",
+        "equipmentOptionFive"
+    ]
 
 
     useEffect(() => {
@@ -30,7 +37,6 @@ function Classform() {
         console.log("name: ", event.target.name)
         console.log("value: ", event.target.value)
         if (event.target.name === "characterClass") {
-            console.log("event.target.value:", event.target.value)
             setFormData({
                 characterClass: event.target.value,
                 proficiencyOne: "",
@@ -90,9 +96,6 @@ function Classform() {
     //     // return jsxReturn
     // }
 
-    // // let profChoiceLabels = (
-    // // )
-
     const profOptions = (
         classInformation === undefined ? "loading..." :
             classInformation.proficiency_choices[0].from.options.map((profOption) => {
@@ -105,24 +108,29 @@ function Classform() {
             })
     )
 
-    function separateItems(inputString) {
-        // Regular expression to match items inside parentheses along with their content
-        const regex = /\((\w)\)(.*?)(?=\(\w\)|$)/g;
-
-        // Extract matches from the input string
-        const matches = [...inputString.matchAll(regex)];
-
-        if (matches.length > 0) {
-            // Extract and clean the content between parentheses
-            const separatedItems = matches.map(match => match[2].trim());
-
-            return separatedItems;
-        } else {
-            // If no matches found, consider the whole string as a single item
-            return [inputString.trim()];
+    function equipmentChoiceFunction(choice) {
+        const choiceCheck = choice.from.option_set_type;
+        if (choiceCheck === "equipment_category") {
+            return <option value={choice.from.equipment_category.name}>{choice.from.equipment_category.name}</option>
+        } else if (choiceCheck === "options_array") {
+            return choice.from.options.map((optionChoice) => {
+                if (optionChoice.option_type === "counted_reference") {
+                    return <option value={optionChoice.of.name}>{optionChoice.of.name}</option>
+                } else if (optionChoice.option_type === "multiple") {
+                    let returnString = optionChoice.items.map((item) => {
+                        if (item.option_type === "choice") {
+                            return item.choice.from.equipment_category.name
+                        } else if (item.option_type === "counted_reference") {
+                            return item.of.name
+                        }
+                    })
+                    return <option value={returnString.join(" and ")}>{returnString.join(" and ")}</option>
+                } else if (optionChoice.option_type === "choice") {
+                    return <option value={optionChoice.choice.from.equipment_category.name}>{optionChoice.choice.from.equipment_category.name}</option>
+                } else { return console.log("pancake") }
+            })
         }
     }
-
 
     return (
         <main>
@@ -134,7 +142,12 @@ function Classform() {
                         name="characterClass"
                         onChange={handleChange}
                     >
-                        {classList.map((selectableClass) => <option value={selectableClass.index} key={selectableClass.index}>{selectableClass.name}</option>)}
+                        {classList.map((selectableClass) =>
+                            <option
+                                value={selectableClass.index}
+                                key={selectableClass.index}>
+                                {selectableClass.name}
+                            </option>)}
                     </select>
                 </label>
                 <br />
@@ -194,13 +207,19 @@ function Classform() {
                     </select>
                     <br />
                 </label> : null}
-                {classInformation.starting_equipment_options.map((choice) =>
+                {classInformation.starting_equipment_options.map((choice, index) =>
                     <>
                         {choice.desc}
                         <br />
-                        <select>
-                            {separateItems(choice.desc).map((choiceOption) => <option>{choiceOption}</option>)}
-                            {/* {console.log(separateItems(choice.desc))} */}
+                        <select
+                            name={equipmentList[index]}
+                            value={formData[equipmentList[index]]}
+                            onChange={handleChange}
+                        >
+                            {formData[equipmentList[index]] ?
+                                <option disabled value=""> -- select an option -- </option> :
+                                <option value=""> -- select an option -- </option>}
+                            {equipmentChoiceFunction(choice)}
                         </select>
                         <br />
                     </>)}
