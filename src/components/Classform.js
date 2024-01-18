@@ -14,6 +14,7 @@ function Classform() {
         equipmentOptionTwo: "",
         equipmentOptionThree: "",
         equipmentOptionFour: "",
+        equipmentOptionFive: "",
     });
     console.log("classInformation", classInformation)
 
@@ -40,6 +41,7 @@ function Classform() {
                 equipmentOptionTwo: "",
                 equipmentOptionThree: "",
                 equipmentOptionFour: "",
+                equipmentOptionFive: "",
             })
         } else {
             setFormData({
@@ -89,16 +91,38 @@ function Classform() {
     // }
 
     // // let profChoiceLabels = (
-
     // // )
+
     const profOptions = (
         classInformation === undefined ? "loading..." :
-            classInformation.proficiency_choices[0].from.options.map((profOption) => { return <option value={profOption.item.index} key={profOption.item.index}>{profOption.item.name}</option> })
+            classInformation.proficiency_choices[0].from.options.map((profOption) => {
+                return <option
+                    disabled={Object.values(formData).includes(profOption.item.index) ? true : false}
+                    value={profOption.item.index}
+                    key={profOption.item.index}>
+                    {profOption.item.name}
+                </option>
+            })
     )
-    const equipOptions = (
-        classInformation === undefined ? "loading..." : classInformation.starting_equipment_options.map((choice) => console.log("choice: ", choice))
-        // classInformation.starting_equipment_options.map((profOption) => { return <option value={profOption.item.index} key={profOption.item.index}>{profOption.item.name}</option> })
-    )
+
+    function separateItems(inputString) {
+        // Regular expression to match items inside parentheses along with their content
+        const regex = /\((\w)\)(.*?)(?=\(\w\)|$)/g;
+
+        // Extract matches from the input string
+        const matches = [...inputString.matchAll(regex)];
+
+        if (matches.length > 0) {
+            // Extract and clean the content between parentheses
+            const separatedItems = matches.map(match => match[2].trim());
+
+            return separatedItems;
+        } else {
+            // If no matches found, consider the whole string as a single item
+            return [inputString.trim()];
+        }
+    }
+
 
     return (
         <main>
@@ -170,14 +194,16 @@ function Classform() {
                     </select>
                     <br />
                 </label> : null}
-                {classInformation === undefined ? "loading..." :
-                    classInformation.starting_equipment_options.map((choice) =>
-                        <>
-                            {choice.desc}
-                            <br />
-
-                            <br />
-                        </>)}
+                {classInformation.starting_equipment_options.map((choice) =>
+                    <>
+                        {choice.desc}
+                        <br />
+                        <select>
+                            {separateItems(choice.desc).map((choiceOption) => <option>{choiceOption}</option>)}
+                            {/* {console.log(separateItems(choice.desc))} */}
+                        </select>
+                        <br />
+                    </>)}
                 {/* {(classInformation.proficiency_choices[0].choose >= 4) ? <label>
                     Fourth Proficiency:
                     <select
