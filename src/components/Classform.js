@@ -3,8 +3,15 @@ import { useOutletContext } from "react-router-dom";
 
 function Classform() {
     const [classInformation, setClassInformation] = useState(undefined)
+    const [martialWeapons, setMartialWeapons] = useState(undefined)
+    const [martialMeleeWeapons, setMartialMeleeWeapons] = useState(undefined)
+    const [simpleWeapons, setSimpleWeapons] = useState(undefined)
+    const [simpleMeleeWeapons, setSimpleMeleeWeapons] = useState(undefined)
+
+
     const [formData, setFormData] = useState({
         characterClass: "barbarian",
+        id: "",
         proficiencyOne: "",
         proficiencyTwo: "",
         proficiencyThree: "",
@@ -25,11 +32,26 @@ function Classform() {
         "equipmentOptionFive"
     ]
 
+    useEffect(() => {
+        fetch(`https://www.dnd5eapi.co/api/equipment-categories/martial-weapons`)
+            .then((r) => r.json())
+            .then(setMartialWeapons)
+        fetch(`https://www.dnd5eapi.co/api/equipment-categories/martial-melee-weapons`)
+            .then((r) => r.json())
+            .then(setMartialMeleeWeapons)
+        fetch(`https://www.dnd5eapi.co/api/equipment-categories/simple-weapons`)
+            .then((r) => r.json())
+            .then(setSimpleWeapons)
+        fetch(`https://www.dnd5eapi.co/api/equipment-categories/simple-melee-weapons`)
+            .then((r) => r.json())
+            .then(setSimpleMeleeWeapons)
+    }, [])
 
     useEffect(() => {
         fetch(`https://www.dnd5eapi.co/api/classes/${formData.characterClass}`)
             .then((r) => r.json())
-            .then(setClassInformation)
+            .then(setClassInformation);
+
     }, [formData])
 
 
@@ -39,6 +61,7 @@ function Classform() {
         if (event.target.name === "characterClass") {
             setFormData({
                 characterClass: event.target.value,
+                id: "",
                 proficiencyOne: "",
                 proficiencyTwo: "",
                 proficiencyThree: "",
@@ -59,42 +82,36 @@ function Classform() {
 
     function handleSubmit(event) {
         event.preventDefault();
-        // const arrayOfStrings = [formData.proficiencyOne, formData.answer2, formData.answer3, formData.answer4]
+        const arrayOfProficiencies = [
+            formData.proficiencyOne,
+            formData.proficiencyTwo,
+            formData.proficiencyThree,
+            formData.proficiencyFour]
+        const arrayOfEquipment = [
+            formData.equipmentOptionOne,
+            formData.equipmentOptionTwo,
+            formData.equipmentOptionThree,
+            formData.equipmentOptionFour,
+            formData.equipmentOptionFive]
         const bodyReturn = {
-            "characterClass": formData.characterClass
-            // "prompt": formData.prompt,
-            // "answers": arrayOfStrings,
-            // "correctIndex": formData.correctIndex
+            "id": formData.id,
+            "characterClass": formData.characterClass,
+            "proficiences": arrayOfProficiencies,
+            "equipment": arrayOfEquipment
         }
         console.log("BodyReturn: ", bodyReturn)
         console.log("Formdata: ", formData)
+
+        fetch("http://localhost:3001/party", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json",
+            },
+            body: JSON.stringify(bodyReturn),
+        })
+            .then((r) => r.json())
+            .then(data => console.log(data));
     }
-
-    //         fetch("http://localhost:3001/party", {
-    //           method: "POST",
-    //           headers: {
-    //             "Content-Type": "application/json",
-    //           },
-    //           body: JSON.stringify(bodyReturn),
-    //         })
-    //           .then((r) => r.json())
-    //           .then((newQuestion) => updateQuestionList(newQuestion));
-    //       }
-
-    // function profChoiceLabel() {
-    //     // let jsxReturn;
-    //     console.log("hello")
-    //     for (let i = 0; i < classInformation.proficiency_choices[0].choose; i++) {
-    //         return (<label>
-    //             First Proficiency:
-    //             <select>
-    //                 {classInformation.proficiency_choices[0].from.options.map((profOption) => <option value={profOption.item.index} key={profOption.item.index}>{profOption.item.name}</option>)}
-    //             </select>
-    //         </label>)
-    //     }
-    //     // console.log("jsxReturn: ", jsxReturn)
-    //     // return jsxReturn
-    // }
 
     const profOptions = (
         classInformation === undefined ? "loading..." :
@@ -111,25 +128,34 @@ function Classform() {
     function equipmentChoiceFunction(choice) {
         const choiceCheck = choice.from.option_set_type;
         if (choiceCheck === "equipment_category") {
-            return <option value={choice.from.equipment_category.name}>{choice.from.equipment_category.name}</option>
+            return <option value={choice.from.equipment_category.index}>{choice.from.equipment_category.index}</option>
         } else if (choiceCheck === "options_array") {
             return choice.from.options.map((optionChoice) => {
                 if (optionChoice.option_type === "counted_reference") {
-                    return <option value={optionChoice.of.name}>{optionChoice.of.name}</option>
+                    return <option value={optionChoice.of.index}>{optionChoice.of.index}</option>
                 } else if (optionChoice.option_type === "multiple") {
                     let returnString = optionChoice.items.map((item) => {
                         if (item.option_type === "choice") {
-                            return item.choice.from.equipment_category.name
+                            return item.choice.from.equipment_category.index
                         } else if (item.option_type === "counted_reference") {
-                            return item.of.name
-                        }
+                            return item.of.index
+                        } else { return "" }
                     })
-                    return <option value={returnString.join(" and ")}>{returnString.join(" and ")}</option>
+                    return <option value={returnString.join(", ")}>{returnString.join(" and ")}</option>
                 } else if (optionChoice.option_type === "choice") {
-                    return <option value={optionChoice.choice.from.equipment_category.name}>{optionChoice.choice.from.equipment_category.name}</option>
-                } else { return console.log("pancake") }
+                    return (
+                        <>
+                            <option
+                                value={optionChoice.choice.from.equipment_category.index}>
+                                {optionChoice.choice.from.equipment_category.index}
+                            </option>
+                        </>
+                    )
+                }
+                else { return <></> }
             })
         }
+
     }
 
     return (
@@ -149,6 +175,16 @@ function Classform() {
                                 {selectableClass.name}
                             </option>)}
                     </select>
+                </label>
+                <br />
+                <label>
+                    Character name:
+                    <input
+                        type="text"
+                        name="id"
+                        onChange={handleChange}
+                        value={formData.id}
+                    ></input>
                 </label>
                 <br />
                 <label>
@@ -207,8 +243,8 @@ function Classform() {
                     </select>
                     <br />
                 </label> : null}
-                {classInformation.starting_equipment_options.map((choice, index) =>
-                    <>
+                {classInformation.starting_equipment_options.map((choice, index) => {
+                    return <>
                         {choice.desc}
                         <br />
                         <select
@@ -219,67 +255,17 @@ function Classform() {
                             {formData[equipmentList[index]] ?
                                 <option disabled value=""> -- select an option -- </option> :
                                 <option value=""> -- select an option -- </option>}
-                            {equipmentChoiceFunction(choice)}
+                            {martialMeleeWeapons === undefined ? console.log("PROBLEM 1") :
+                                martialWeapons === undefined ? console.log("PROBLEM 2") :
+                                    simpleMeleeWeapons === undefined ? console.log("PROBLEM 3") :
+                                        simpleWeapons === undefined ? console.log("PROBLEM 4") :
+                                            equipmentChoiceFunction(choice)}
                         </select>
                         <br />
-                    </>)}
-                {/* {(classInformation.proficiency_choices[0].choose >= 4) ? <label>
-                    Fourth Proficiency:
-                    <select
-                        name="proficiencyFour"
-                        value={formData.proficiencyFour}
-                        onChange={handleChange}
-                    >
-                        {formData.proficiencyFour !== "" ?
-                            <option disabled value=""> -- select an option -- </option> :
-                            <option value=""> -- select an option -- </option>}
-                        {profOptions}
-                    </select>
-                </label> : null} */}
-                <br />
-
-                {/* 
-        //         <label>
-        //         Answer 2:
-        //         <input
-        //             type="text"
-        //             name="answer2"
-        //             value={formData.answer2}
-        //             onChange={handleChange}
-        //         />
-        //         </label>
-        //         <label>
-        //         Answer 3:
-        //         <input
-        //             type="text"
-        //             name="answer3"
-        //             value={formData.answer3}
-        //             onChange={handleChange}
-        //         />
-        //         </label>
-        //         <label>
-        //         Answer 4:
-        //         <input
-        //             type="text"
-        //             name="answer4"
-        //             value={formData.answer4}
-        //             onChange={handleChange}
-        //         />
-        //         </label>
-        //         <label>
-        //         Correct Answer:
-        //         <select
-        //             name="correctIndex"
-        //             value={formData.correctIndex}
-        //             onChange={handleChange}
-        //         >
-        //             <option value="0">{formData.answer1}</option>
-        //             <option value="1">{formData.answer2}</option>
-        //             <option value="2">{formData.answer3}</option>
-        //             <option value="3">{formData.answer4}</option>
-        //         </select>
-        //         </label> */}
-                <button type="submit" >Add Question</button>
+                    </>
+                }
+                )}
+                <button type="submit" >Add Character</button>
             </form>}
         </main>
     );
