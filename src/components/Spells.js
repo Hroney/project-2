@@ -7,7 +7,7 @@ function Spells() {
     console.log("classlist:", classList)
 
     const renderClasses = (
-        classList.map((characterClass) => { return <CharacterClass key={characterClass.name} characterClass={characterClass} linkInfo="/spells/" /> })
+        classList.map((characterClass) => <CharacterClass key={characterClass.name} characterClass={characterClass} linkInfo="/spells/" />)
     )
 
     return (

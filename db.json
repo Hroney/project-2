@@ -1,3 +1,38 @@
 {
-    "party": []
+  "party": [
+    {
+      "id": "Gilbert",
+      "characterClass": "bard",
+      "proficiences": [
+        "skill-athletics",
+        "skill-insight",
+        "skill-perception",
+        ""
+      ],
+      "equipment": [
+        "longsword",
+        "diplomats-pack",
+        "lute",
+        "",
+        ""
+      ]
+    },
+    {
+      "id": "Gilbert",
+      "characterClass": "barbarian",
+      "proficiences": [
+        "skill-animal-handling",
+        "skill-athletics",
+        "",
+        ""
+      ],
+      "equipment": [
+        "martial-melee-weapons",
+        "simple-weapons",
+        "",
+        "",
+        ""
+      ]
+    }
+  ]
 }

@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import { CharacterCard } from "./CharacterCard";
 
 function Party() {
     const [partyList, setPartyList] = useState([])
@@ -9,41 +10,9 @@ function Party() {
             .then(setPartyList)
     }, [])
 
-
-
-
-    function characterBuilder(character) {
-        console.log("character:", character)
-        return (
-            <div className="character-card">
-                <p>
-                    {character.id} <br />
-                    {character.characterClass} <br />
-                    {character.proficiences.map((proficiency) => {
-                        if (proficiency !== "") {
-                            return <>{proficiency}<br /></>
-                        }
-                    })}
-                    {character.equipment.map((equipPiece) => {
-                        if (equipPiece !== "") {
-                            return <>{equipPiece}<br /></>
-                        }
-                    })}
-
-                </p>
-            </div>
-        )
-
-    }
-
     return (
         <main>
-            {partyList === undefined ? <>Loading</> :
-                <ul>
-                    {partyList.map((character) => characterBuilder(character))}
-                    Hello
-                    {console.log(partyList)}
-                </ul>}
+            <ul>{partyList.map(c => <CharacterCard {...c} />)}</ul>
         </main>
     );
 }

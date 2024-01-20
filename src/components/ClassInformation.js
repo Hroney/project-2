@@ -13,8 +13,6 @@ function ClassInformation() {
             .then(setClassInformation)
     }, [nameOfClass])
 
-    console.log(classInformation)
-
     return (
         <aside className="border">
             <h1>{classInformation.name}</h1>

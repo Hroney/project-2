@@ -3,11 +3,6 @@ import { useOutletContext } from "react-router-dom";
 
 function Classform() {
     const [classInformation, setClassInformation] = useState(undefined)
-    const [martialWeapons, setMartialWeapons] = useState(undefined)
-    const [martialMeleeWeapons, setMartialMeleeWeapons] = useState(undefined)
-    const [simpleWeapons, setSimpleWeapons] = useState(undefined)
-    const [simpleMeleeWeapons, setSimpleMeleeWeapons] = useState(undefined)
-
 
     const [formData, setFormData] = useState({
         characterClass: "barbarian",
@@ -33,21 +28,6 @@ function Classform() {
     ]
 
     useEffect(() => {
-        fetch(`https://www.dnd5eapi.co/api/equipment-categories/martial-weapons`)
-            .then((r) => r.json())
-            .then(setMartialWeapons)
-        fetch(`https://www.dnd5eapi.co/api/equipment-categories/martial-melee-weapons`)
-            .then((r) => r.json())
-            .then(setMartialMeleeWeapons)
-        fetch(`https://www.dnd5eapi.co/api/equipment-categories/simple-weapons`)
-            .then((r) => r.json())
-            .then(setSimpleWeapons)
-        fetch(`https://www.dnd5eapi.co/api/equipment-categories/simple-melee-weapons`)
-            .then((r) => r.json())
-            .then(setSimpleMeleeWeapons)
-    }, [])
-
-    useEffect(() => {
         fetch(`https://www.dnd5eapi.co/api/classes/${formData.characterClass}`)
             .then((r) => r.json())
             .then(setClassInformation);
@@ -56,8 +36,6 @@ function Classform() {
 
 
     function handleChange(event) {
-        console.log("name: ", event.target.name)
-        console.log("value: ", event.target.value)
         if (event.target.name === "characterClass") {
             setFormData({
                 characterClass: event.target.value,
@@ -99,8 +77,6 @@ function Classform() {
             "proficiences": arrayOfProficiencies,
             "equipment": arrayOfEquipment
         }
-        console.log("BodyReturn: ", bodyReturn)
-        console.log("Formdata: ", formData)
 
         fetch("http://localhost:3001/party", {
             method: "POST",
@@ -144,15 +120,13 @@ function Classform() {
                     return <option value={returnString.join(", ")}>{returnString.join(" and ")}</option>
                 } else if (optionChoice.option_type === "choice") {
                     return (
-                        <>
-                            <option
-                                value={optionChoice.choice.from.equipment_category.index}>
-                                {optionChoice.choice.from.equipment_category.index}
-                            </option>
-                        </>
+                        <option
+                            value={optionChoice.choice.from.equipment_category.index}>
+                            {optionChoice.choice.from.equipment_category.index}
+                        </option>
                     )
                 }
-                else { return <></> }
+                else { return null }
             })
         }
 
@@ -255,11 +229,7 @@ function Classform() {
                             {formData[equipmentList[index]] ?
                                 <option disabled value=""> -- select an option -- </option> :
                                 <option value=""> -- select an option -- </option>}
-                            {martialMeleeWeapons === undefined ? console.log("PROBLEM 1") :
-                                martialWeapons === undefined ? console.log("PROBLEM 2") :
-                                    simpleMeleeWeapons === undefined ? console.log("PROBLEM 3") :
-                                        simpleWeapons === undefined ? console.log("PROBLEM 4") :
-                                            equipmentChoiceFunction(choice)}
+                            {equipmentChoiceFunction(choice)}
                         </select>
                         <br />
                     </>
