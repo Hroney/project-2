@@ -32,14 +32,23 @@ A landing hub for accessing all other pages. Nothing more than an intro to the w
 Contains all the base D&D fifth edition classes with infromation from the API. 
 This includes Hit dice, a link to the spell list page (Routes to the spell list page), Saving throw dice, Proficiencies the class is capable of, additional proficiencies the class is capable of learning / choosing, and a list of equipment the class is able to choose.
 
+![Classes](https://github.com/Hroney/project-2/assets/56745582/e14e6220-8e1f-4ce2-932b-f56133649256)
+
+
 ### Spell Page
 
 Lists out in no particular order the spells the class is able to learn / use. Upon clicking a spell the webpage will change the main body to a spell information page containing all of the spell information.
 This includes the spells' School, range of efficacy, concentration status, a description of the spell, and a redirect to all classes that can use that spell.
 
+![Spells](https://github.com/Hroney/project-2/assets/56745582/01fb0c4a-48a1-450a-9162-0cb6e9e6ade0)
+
+
 ### Class Form Page
 
 This page creates the form to add a new party member! It asks for class, name, proficiencies, and starting equipment. Proficiencies are exclusive and cannot be doubled up in the form. These characters are added to a party list in db.json and then are spit out into the party page.
+
+![Character form](https://github.com/Hroney/project-2/assets/56745582/5803e460-2800-4a87-b07d-f4ddc471dd16)
+
 
 ### Party Page
 
