@@ -1,8 +1,10 @@
 import { useState, useEffect } from "react";
 import { useOutletContext } from "react-router-dom";
+import { CharacterCard } from "./CharacterCard";
 
 function Classform() {
     const [classInformation, setClassInformation] = useState(undefined)
+    const [partyList, setPartyList] = useState([])
 
     const [formData, setFormData] = useState({
         characterClass: "barbarian",
@@ -78,15 +80,33 @@ function Classform() {
             "equipment": arrayOfEquipment
         }
 
-        fetch("http://localhost:3001/party", {
+        const configObj = {
             method: "POST",
             headers: {
                 "Content-Type": "application/json",
             },
             body: JSON.stringify(bodyReturn),
-        })
+        }
+        fetch("http://localhost:3001/party", configObj)
             .then((r) => r.json())
-            .then(data => console.log(data));
+            .then(character => addPartyMember(character))
+        setFormData({
+            characterClass: formData.characterClass,
+            id: "",
+            proficiencyOne: "",
+            proficiencyTwo: "",
+            proficiencyThree: "",
+            proficiencyFour: "",
+            equipmentOptionOne: "",
+            equipmentOptionTwo: "",
+            equipmentOptionThree: "",
+            equipmentOptionFour: "",
+            equipmentOptionFive: "",
+        })
+    }
+
+    const addPartyMember = (newCharacter) => {
+        setPartyList([...partyList, newCharacter])
     }
 
     const profOptions = (
@@ -237,6 +257,7 @@ function Classform() {
                 )}
                 <button type="submit" >Add Character</button>
             </form>}
+            {<ul>{partyList.map(c => <CharacterCard {...c} />)}</ul>}
         </main>
     );
 }
