@@ -169,6 +169,40 @@
         "",
         ""
       ]
+    },
+    {
+      "id": "",
+      "characterClass": "barbarian",
+      "proficiences": [
+        "skill-animal-handling",
+        "skill-intimidation",
+        "",
+        ""
+      ],
+      "equipment": [
+        "martial-melee-weapons",
+        "handaxe",
+        "",
+        "",
+        ""
+      ]
+    },
+    {
+      "id": "",
+      "characterClass": "barbarian",
+      "proficiences": [
+        "",
+        "",
+        "",
+        ""
+      ],
+      "equipment": [
+        "",
+        "",
+        "",
+        "",
+        ""
+      ]
     }
   ]
 }

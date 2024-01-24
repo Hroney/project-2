@@ -106,7 +106,7 @@ function Classform() {
     }
 
     const addPartyMember = (newCharacter) => {
-        setPartyList([...partyList, newCharacter])
+        setPartyList([newCharacter])
     }
 
     const profOptions = (
