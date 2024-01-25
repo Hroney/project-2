@@ -4,7 +4,5 @@
 
 .form-container {
     flex: 1;
-    /* This will make the form take up the available space */
     margin-right: 20px;
-    /* Adjust the margin based on your preference */
 }
