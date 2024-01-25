@@ -30,7 +30,7 @@ function NavBar() {
                 Create a Character
             </NavLink>
             <NavLink
-                to="/party"
+                to="/pick-a-class/party"
                 className="nav-link"
             >
                 Party List

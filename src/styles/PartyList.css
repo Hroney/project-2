@@ -1,0 +1,25 @@
+.partylist {
+    text-indent: 10px;
+    margin-left: 0%;
+    min-width: 40%;
+    max-width: fit-content;
+    min-height: fit-content;
+    position: absolute;
+    max-height: 50vh;
+    overflow-y: scroll;
+    text-align: left;
+    background-color: #282c34;
+}
+
+.partylist::-webkit-scrollbar {
+    width: 1em;
+}
+
+.partylist::-webkit-scrollbar-track {
+    -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
+}
+
+.partylist::-webkit-scrollbar-thumb {
+    background-color: darkgrey;
+    outline: 1px solid slategrey;
+}

@@ -1,5 +1,5 @@
 export const CharacterCard = character => (
-    <li className="character-card">
+    <li key={character.id} className="character-card">
         <div>{character.id}</div>
         <div>Class: {character.characterClass}</div>
         <div>Proficiencies</div>

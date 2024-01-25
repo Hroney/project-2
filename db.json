@@ -18,164 +18,11 @@
       ]
     },
     {
-      "id": "Gilbert",
-      "characterClass": "barbarian",
-      "proficiences": [
-        "skill-animal-handling",
-        "skill-athletics",
-        "",
-        ""
-      ],
-      "equipment": [
-        "martial-melee-weapons",
-        "simple-weapons",
-        "",
-        "",
-        ""
-      ]
-    },
-    {
       "id": "John",
-      "characterClass": "bard",
+      "characterClass": "barbarian",
       "proficiences": [
         "skill-athletics",
-        "skill-deception",
-        "skill-medicine",
-        ""
-      ],
-      "equipment": [
-        "longsword",
-        "diplomats-pack",
-        "lute",
-        "",
-        ""
-      ]
-    },
-    {
-      "id": "Hayden",
-      "characterClass": "fighter",
-      "proficiences": [
-        "skill-animal-handling",
-        "skill-acrobatics",
-        "",
-        ""
-      ],
-      "equipment": [
-        "chain-mail",
-        "martial-weapons",
-        "crossbow-light, crossbow-bolt",
-        "dungeoneers-pack",
-        ""
-      ]
-    },
-    {
-      "id": "",
-      "characterClass": "barbarian",
-      "proficiences": [
-        "",
-        "",
-        "",
-        ""
-      ],
-      "equipment": [
-        "",
-        "",
-        "",
-        "",
-        ""
-      ]
-    },
-    {
-      "id": "John",
-      "characterClass": "monk",
-      "proficiences": [
-        "skill-acrobatics",
-        "skill-history",
-        "",
-        ""
-      ],
-      "equipment": [
-        "shortsword",
-        "dungeoneers-pack",
-        "",
-        "",
-        ""
-      ]
-    },
-    {
-      "id": "John",
-      "characterClass": "monk",
-      "proficiences": [
-        "skill-acrobatics",
-        "skill-history",
-        "",
-        ""
-      ],
-      "equipment": [
-        "shortsword",
-        "dungeoneers-pack",
-        "",
-        "",
-        ""
-      ]
-    },
-    {
-      "id": "ClericGuy",
-      "characterClass": "cleric",
-      "proficiences": [
-        "skill-insight",
-        "skill-persuasion",
-        "",
-        ""
-      ],
-      "equipment": [
-        "mace",
-        "leather-armor",
-        "crossbow-light, crossbow-bolt",
-        "priests-pack",
-        "holy-symbols"
-      ]
-    },
-    {
-      "id": "druidman",
-      "characterClass": "druid",
-      "proficiences": [
-        "skill-arcana",
-        "skill-insight",
-        "",
-        ""
-      ],
-      "equipment": [
-        "shield",
-        "simple-melee-weapons",
-        "",
-        "",
-        ""
-      ]
-    },
-    {
-      "id": "druidguy2",
-      "characterClass": "druid",
-      "proficiences": [
-        "skill-animal-handling",
-        "skill-medicine",
-        "",
-        ""
-      ],
-      "equipment": [
-        "shield",
-        "scimitar",
-        "druidic-foci",
-        "",
-        ""
-      ]
-    },
-    {
-      "id": "",
-      "characterClass": "barbarian",
-      "proficiences": [
-        "skill-animal-handling",
-        "skill-intimidation",
+        "skill-nature",
         "",
         ""
       ],
@@ -189,7 +36,177 @@
     },
     {
       "id": "",
-      "characterClass": "barbarian",
+      "characterClass": "cleric",
+      "proficiences": [
+        "",
+        "",
+        "",
+        ""
+      ],
+      "equipment": [
+        "",
+        "",
+        "",
+        "",
+        ""
+      ]
+    },
+    {
+      "id": "",
+      "characterClass": "cleric",
+      "proficiences": [
+        "",
+        "",
+        "",
+        ""
+      ],
+      "equipment": [
+        "",
+        "",
+        "",
+        "",
+        ""
+      ]
+    },
+    {
+      "id": "",
+      "characterClass": "cleric",
+      "proficiences": [
+        "",
+        "",
+        "",
+        ""
+      ],
+      "equipment": [
+        "",
+        "",
+        "",
+        "",
+        ""
+      ]
+    },
+    {
+      "id": "",
+      "characterClass": "cleric",
+      "proficiences": [
+        "",
+        "",
+        "",
+        ""
+      ],
+      "equipment": [
+        "",
+        "",
+        "",
+        "",
+        ""
+      ]
+    },
+    {
+      "id": "",
+      "characterClass": "cleric",
+      "proficiences": [
+        "",
+        "",
+        "",
+        ""
+      ],
+      "equipment": [
+        "",
+        "",
+        "",
+        "",
+        ""
+      ]
+    },
+    {
+      "id": "",
+      "characterClass": "cleric",
+      "proficiences": [
+        "",
+        "",
+        "",
+        ""
+      ],
+      "equipment": [
+        "",
+        "",
+        "",
+        "",
+        ""
+      ]
+    },
+    {
+      "id": "",
+      "characterClass": "cleric",
+      "proficiences": [
+        "",
+        "",
+        "",
+        ""
+      ],
+      "equipment": [
+        "",
+        "",
+        "",
+        "",
+        ""
+      ]
+    },
+    {
+      "id": "",
+      "characterClass": "cleric",
+      "proficiences": [
+        "",
+        "",
+        "",
+        ""
+      ],
+      "equipment": [
+        "",
+        "",
+        "",
+        "",
+        ""
+      ]
+    },
+    {
+      "id": "",
+      "characterClass": "cleric",
+      "proficiences": [
+        "",
+        "",
+        "",
+        ""
+      ],
+      "equipment": [
+        "",
+        "",
+        "",
+        "",
+        ""
+      ]
+    },
+    {
+      "id": "",
+      "characterClass": "cleric",
+      "proficiences": [
+        "",
+        "",
+        "",
+        ""
+      ],
+      "equipment": [
+        "",
+        "",
+        "",
+        "",
+        ""
+      ]
+    },
+    {
+      "id": "",
+      "characterClass": "druid",
       "proficiences": [
         "",
         "",

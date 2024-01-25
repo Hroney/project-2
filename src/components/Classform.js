@@ -1,7 +1,6 @@
 import { useState, useEffect } from "react";
-import { useOutletContext } from "react-router-dom";
-import { CharacterCard } from "./CharacterCard";
-
+import { Outlet, useOutletContext } from "react-router-dom";
+import "../styles/ClassForm.css"
 function Classform() {
     const [classInformation, setClassInformation] = useState(undefined)
     const [partyList, setPartyList] = useState([])
@@ -35,6 +34,12 @@ function Classform() {
             .then(setClassInformation);
 
     }, [formData])
+
+    useEffect(() => {
+        fetch("http://localhost:3001/party")
+            .then(r => r.json())
+            .then(setPartyList)
+    }, [])
 
 
     function handleChange(event) {
@@ -106,7 +111,7 @@ function Classform() {
     }
 
     const addPartyMember = (newCharacter) => {
-        setPartyList([newCharacter])
+        setPartyList([...partyList, newCharacter])
     }
 
     const profOptions = (
@@ -153,111 +158,115 @@ function Classform() {
     }
 
     return (
-        <main>
-            {classInformation === undefined ? <>Loading..</> : <form onSubmit={handleSubmit}>
-                <label>
-                    Character Class:
-                    <select
-                        value={formData.characterClass}
-                        name="characterClass"
-                        onChange={handleChange}
-                    >
-                        {classList.map((selectableClass) =>
-                            <option
-                                value={selectableClass.index}
-                                key={selectableClass.index}>
-                                {selectableClass.name}
-                            </option>)}
-                    </select>
-                </label>
-                <br />
-                <label>
-                    Character name:
-                    <input
-                        type="text"
-                        name="id"
-                        onChange={handleChange}
-                        value={formData.id}
-                    ></input>
-                </label>
-                <br />
-                <label>
-                    First Proficiency:
-                    <select
-                        name="proficiencyOne"
-                        value={formData.proficiencyOne}
-                        onChange={handleChange}
-                    >
-                        {formData.proficiencyOne !== "" ?
-                            <option disabled value=""> -- select an option -- </option> :
-                            <option value=""> -- select an option -- </option>}
-                        {profOptions}
-                    </select>
-                    <br />
-                </label>
-                {(classInformation.proficiency_choices[0].choose >= 2) ? <label>
-                    Second Proficiency:
-                    <select
-                        name="proficiencyTwo"
-                        value={formData.proficiencyTwo}
-                        onChange={handleChange}
-                    >
-                        {formData.proficiencyTwo !== "" ?
-                            <option disabled value=""> -- select an option -- </option> :
-                            <option value=""> -- select an option -- </option>}
-                        {profOptions}
-                    </select>
-                    <br />
-                </label> : null}
-                {(classInformation.proficiency_choices[0].choose >= 3) ? <label>
-                    Third Proficiency:
-                    <select
-                        name="proficiencyThree"
-                        value={formData.proficiencyThree}
-                        onChange={handleChange}
-                    >
-                        {formData.proficiencyThree !== "" ?
-                            <option disabled value=""> -- select an option -- </option> :
-                            <option value=""> -- select an option -- </option>}
-                        {profOptions}
-                    </select>
-                    <br />
-                </label> : null}
-                {(classInformation.proficiency_choices[0].choose >= 4) ? <label>
-                    Fourth Proficiency:
-                    <select
-                        name="proficiencyFour"
-                        value={formData.proficiencyFour}
-                        onChange={handleChange}
-                    >
-                        {formData.proficiencyFour !== "" ?
-                            <option disabled value=""> -- select an option -- </option> :
-                            <option value=""> -- select an option -- </option>}
-                        {profOptions}
-                    </select>
-                    <br />
-                </label> : null}
-                {classInformation.starting_equipment_options.map((choice, index) => {
-                    return <>
-                        {choice.desc}
-                        <br />
+        <main className="container">
+
+            <div className="form-container">
+                {classInformation === undefined ? <>Loading..</> : <form onSubmit={handleSubmit}>
+                    <label>
+                        Character Class:
                         <select
-                            name={equipmentList[index]}
-                            value={formData[equipmentList[index]]}
+                            value={formData.characterClass}
+                            name="characterClass"
                             onChange={handleChange}
                         >
-                            {formData[equipmentList[index]] ?
+                            {classList.map((selectableClass) =>
+                                <option
+                                    value={selectableClass.index}
+                                    key={selectableClass.index}>
+                                    {selectableClass.name}
+                                </option>)}
+                        </select>
+                    </label>
+                    <br />
+                    <label>
+                        Character name:
+                        <input
+                            type="text"
+                            name="id"
+                            onChange={handleChange}
+                            value={formData.id}
+                        ></input>
+                    </label>
+                    <br />
+                    <label>
+                        First Proficiency:
+                        <select
+                            name="proficiencyOne"
+                            value={formData.proficiencyOne}
+                            onChange={handleChange}
+                        >
+                            {formData.proficiencyOne !== "" ?
                                 <option disabled value=""> -- select an option -- </option> :
                                 <option value=""> -- select an option -- </option>}
-                            {equipmentChoiceFunction(choice)}
+                            {profOptions}
                         </select>
                         <br />
-                    </>
-                }
-                )}
-                <button type="submit" >Add Character</button>
-            </form>}
-            {<ul>{partyList.map(c => <CharacterCard {...c} />)}</ul>}
+                    </label>
+                    {(classInformation.proficiency_choices[0].choose >= 2) ? <label>
+                        Second Proficiency:
+                        <select
+                            name="proficiencyTwo"
+                            value={formData.proficiencyTwo}
+                            onChange={handleChange}
+                        >
+                            {formData.proficiencyTwo !== "" ?
+                                <option disabled value=""> -- select an option -- </option> :
+                                <option value=""> -- select an option -- </option>}
+                            {profOptions}
+                        </select>
+                        <br />
+                    </label> : null}
+                    {(classInformation.proficiency_choices[0].choose >= 3) ? <label>
+                        Third Proficiency:
+                        <select
+                            name="proficiencyThree"
+                            value={formData.proficiencyThree}
+                            onChange={handleChange}
+                        >
+                            {formData.proficiencyThree !== "" ?
+                                <option disabled value=""> -- select an option -- </option> :
+                                <option value=""> -- select an option -- </option>}
+                            {profOptions}
+                        </select>
+                        <br />
+                    </label> : null}
+                    {(classInformation.proficiency_choices[0].choose >= 4) ? <label>
+                        Fourth Proficiency:
+                        <select
+                            name="proficiencyFour"
+                            value={formData.proficiencyFour}
+                            onChange={handleChange}
+                        >
+                            {formData.proficiencyFour !== "" ?
+                                <option disabled value=""> -- select an option -- </option> :
+                                <option value=""> -- select an option -- </option>}
+                            {profOptions}
+                        </select>
+                        <br />
+                    </label> : null}
+                    {classInformation.starting_equipment_options.map((choice, index) => {
+                        return <>
+                            {choice.desc}
+                            <br />
+                            <select
+                                name={equipmentList[index]}
+                                value={formData[equipmentList[index]]}
+                                onChange={handleChange}
+                            >
+                                {formData[equipmentList[index]] ?
+                                    <option disabled value=""> -- select an option -- </option> :
+                                    <option value=""> -- select an option -- </option>}
+                                {equipmentChoiceFunction(choice)}
+                            </select>
+                            <br />
+                        </>
+                    }
+                    )}
+                    <button type="submit" >Add Character</button>
+                </form>}
+                <Outlet context={[partyList, setPartyList]} />
+
+            </div>
         </main>
     );
 }

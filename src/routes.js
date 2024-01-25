@@ -45,11 +45,13 @@ const routes = [
             },
             {
                 path: '/pick-a-class',
-                element: <Classform />
-            },
-            {
-                path: '/party',
-                element: <Party />
+                element: <Classform />,
+                children: [
+                    {
+                        path: '/pick-a-class/party',
+                        element: <Party />,
+                    }
+                ]
             }
         ]
     }

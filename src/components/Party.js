@@ -1,19 +1,14 @@
-import { useEffect, useState } from "react";
+import { useOutletContext } from "react-router-dom";
 import { CharacterCard } from "./CharacterCard";
+import "../styles/PartyList.css"
 
 function Party() {
-    const [partyList, setPartyList] = useState([])
-
-    useEffect(() => {
-        fetch("http://localhost:3001/party")
-            .then((r) => r.json())
-            .then(setPartyList)
-    }, [])
+    const [partyList, setPartyList] = useOutletContext();
 
     return (
-        <main>
+        <aside className="partylist">
             <ul>{partyList.map(c => <CharacterCard {...c} />)}</ul>
-        </main>
+        </aside>
     );
 }
 
